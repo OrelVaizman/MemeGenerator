@@ -22,16 +22,18 @@ var gMeme = {
             size: 20,
             align: 'left',
             color: 'red',
-            x: 0,
-            y: 0,
+            font: 'impact',
+            x: 250,
+            y: 50,
         },
         {
             txt: 'Enter text here!2',
             size: 20,
             align: 'left',
             color: 'red',
-            x: 0,
-            y: 0,
+            font: 'impact',
+            x: 100,
+            y: 30,
         }
     ]
 }

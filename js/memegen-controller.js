@@ -15,21 +15,21 @@ function renderMeme() {
     img.src = selectedImg.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
-        drawText()
+        drawTexts()
     }
 }
 
-function drawText() {
-    var x = 250;
-    var y = 50;
-    var text = gMeme.lines[gMeme.selectedLineIdx].txt;
-    gCtx.strokeStyle = 'red'
-    gCtx.fillStyle = 'white'
-    gCtx.lineWidth = '2'
-    gCtx.font = '48px ' + gFont
-    gCtx.textAlign = 'center'
-    gCtx.fillText(text, x, y)
-    gCtx.strokeText(text, x, y)
+function drawTexts() {
+    console.log('Wired')
+    gMeme.lines.forEach((line) => {
+        gCtx.strokeStyle = 'red'
+        gCtx.fillStyle = 'white'
+        gCtx.lineWidth = '2'
+        gCtx.font = `${line.size}px ` + line.font
+        gCtx.textAlign = line.align
+        gCtx.fillText(line.txt, line.x, line.y)
+        gCtx.strokeText(line.txt, line.x, line.y)
+    })
 }
 
 function addEventListener() {
@@ -65,12 +65,18 @@ function togglePage() {
 
 function onSetFontSize(action) {
     setFontSize(action);
+    renderMeme();
 }
 
 function onSwitchLines() {
-    setSelectedLine()
+    setSelectedLine();
+    updateTextInput();
 }
 
 function onMoveLine() {
     moveLine();
+}
+
+function updateTextInput() {
+    document.querySelector('.text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
 }
