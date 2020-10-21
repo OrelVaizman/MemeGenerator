@@ -62,3 +62,15 @@ function togglePage() {
     var elGallery = document.querySelector('.gallery-container');
     elGallery.style.display = ('none');
 }
+
+function onSetFontSize(action) {
+    setFontSize(action);
+}
+
+function onSwitchLines() {
+    setSelectedLine()
+}
+
+function onMoveLine() {
+    moveLine();
+}

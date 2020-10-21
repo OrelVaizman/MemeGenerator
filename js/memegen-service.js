@@ -21,7 +21,17 @@ var gMeme = {
             txt: 'Enter text here!',
             size: 20,
             align: 'left',
-            color: 'red'
+            color: 'red',
+            x: 0,
+            y: 0,
+        },
+        {
+            txt: 'Enter text here!2',
+            size: 20,
+            align: 'left',
+            color: 'red',
+            x: 0,
+            y: 0,
         }
     ]
 }
@@ -39,4 +49,28 @@ function setSelectedImage(imgid) {
     gMeme.selectedImgId = +imgid;
     renderMeme();
     togglePage();
+}
+
+function setFontSize(action) {
+    if (action === 'increase') {
+        gMeme.lines[gMeme.selectedLineIdx].size++
+    } else if (action === 'decrease') {
+        gMeme.lines[gMeme.selectedLineIdx].size--
+    }
+    console.log(gMeme.lines[gMeme.selectedLineIdx].size);
+}
+
+function setSelectedLine() {
+    if (gMeme.lines.length === 0) {
+        return;
+    }
+    if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx++
+    } else if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx = 0
+    }
+    console.log(gMeme.selectedLineIdx);
+}
+function moveLine() {
+
 }
