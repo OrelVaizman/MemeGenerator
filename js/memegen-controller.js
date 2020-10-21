@@ -22,13 +22,15 @@ function setCanvasState() {
 function drawTexts() {
     console.log('Wired')
     gMeme.lines.forEach((line) => {
+        // console.log('before creating', 'text:', line.txt, gCtx.measureText(line.txt))
         gCtx.strokeStyle = 'red'
         gCtx.fillStyle = 'white'
-        gCtx.lineWidth = '2'
+        // gCtx.lineWidth = '2'
         gCtx.font = `${line.size}px ` + line.font
         gCtx.textAlign = line.align
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
+        line.width = gCtx.measureText(line.txt).width;
     })
 }
 
@@ -106,5 +108,11 @@ function onDeleteText() {
 
 function onAlignText(action) {
     alignText(action);
+    setCanvasState();
+}
+
+//TOBEUPDATED UI: Font selector value will have the font family set on its value
+function onChangingFont(font) {
+    setFontFamily(font);
     setCanvasState();
 }

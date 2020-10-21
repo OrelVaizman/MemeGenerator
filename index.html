@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
     <script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" data-auto-a11y="true"></script>
-    <title>Pixel-Perfect</title>
+    <title>Pro-Meme</title>
 </head>
 
 <body onload="init()">
@@ -60,8 +60,13 @@
                         </button>
                     </div>
                     <div class="third-buttons-bar flex">
-                        <select class="font-selector">
-                            <option value="impact">impact</option>
+                        <select class="font-selector" onchange="onChangingFont(this.value)">
+                            <option value="impact">Impact</option>
+                            <option value="ariel">Ariel</option>
+                            <option value="sans-serif">Sans-Serif</option>
+                            <option value="cursive">Cursive</option>
+                            <option value="verdana">Verdana</option>
+                            <option value="georgia">Georgia</option>
                         </select>
                         <button class="editor-buttons">
                             <img src="imgs/buttons/A.png">
@@ -70,11 +75,8 @@
                             <img src="imgs/buttons/paint-board-and-brush.png">
                         </button>
                     </div>
-                    <button class="increase-size" onclick="onSetFontSize('increase')">+</button>
-                    <button class="decrease-size" onclick="onSetFontSize('decrease')">-</button>
-                    <button class="decrease-size" onclick="onSwitchLines()">Switch Line</button>
-                    <button class="decrease-size" onclick="onMoveLine('up')">Move it UP!</button>
-                    <button class="decrease-size" onclick="onMoveLine('down')">Move it DOWN!</button>
+                    <button class="decrease-size" onclick="onMoveLine('up')">!UP!</button>
+                    <button class="decrease-size" onclick="onMoveLine('down')">!DOWN!</button>
                 </div>
             </div>
         </div>

@@ -1,6 +1,4 @@
 'use strict';
-var gImg;
-var gFont = 'impact';
 var gCanvas;
 var gCtx;
 var gKeywords = {
@@ -57,6 +55,7 @@ var gMeme = {
             font: 'impact',
             x: 250,
             y: 50,
+            width: 0,
         },
         {
             txt: 'Enter text here!2',
@@ -66,6 +65,7 @@ var gMeme = {
             font: 'impact',
             x: 250,
             y: 430,
+            width: 0,
         }
     ]
 }
@@ -104,6 +104,7 @@ function setSelectedLine() {
     console.log(gMeme.selectedLineIdx);
 }
 function moveLine(action) {
+    if (gMeme.lines.length === 0) return;
     if (action === 'down') {
         gMeme.lines[gMeme.selectedLineIdx].y += 10;
     } else if (action === 'up') {
@@ -121,6 +122,7 @@ function addText() {
         font: 'impact',
         x: 250,
         y: 250,
+        width: 0,
     });
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
@@ -131,5 +133,11 @@ function deleteText() {
 }
 
 function alignText(action) {
-gMeme.lines[gMeme.selectedLineIdx].align = action;
+    if (gMeme.lines.length === 0) return;
+    gMeme.lines[gMeme.selectedLineIdx].align = action;
+}
+
+function setFontFamily(font) {
+    if (gMeme.lines.length === 0) return;
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
