@@ -63,9 +63,6 @@ function setFontSize(action) {
 }
 
 function setSelectedLine() {
-    if (gMeme.lines.length === 0) {
-        return;
-    }
     if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
         gMeme.selectedLineIdx++
     } else if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
@@ -73,6 +70,11 @@ function setSelectedLine() {
     }
     console.log(gMeme.selectedLineIdx);
 }
-function moveLine() {
-
+function moveLine(action) {
+    if (action === 'down') {
+        gMeme.lines[gMeme.selectedLineIdx].y += 10;
+    } else if (action === 'up') {
+        gMeme.lines[gMeme.selectedLineIdx].y -= 10;
+    }
+    console.log(gMeme.lines[gMeme.selectedLineIdx].y)
 }

@@ -73,8 +73,15 @@ function onSwitchLines() {
     updateTextInput();
 }
 
-function onMoveLine() {
-    moveLine();
+function onMoveLine(action) {
+    //TOBECHANGED
+    // if (gMeme.lines[gMeme.selectedLineIdx].y >= gCanvas.height) {
+    //     gMeme.lines[gMeme.selectedLineIdx].y === gCanvas.height - 5;
+    // } else if (gMeme.lines[gMeme.selectedLineIdx].y <= 0) {
+    //     gMeme.lines[gMeme.selectedLineIdx].y === 5;
+    // }
+    moveLine(action);
+    renderMeme();
 }
 
 function updateTextInput() {
