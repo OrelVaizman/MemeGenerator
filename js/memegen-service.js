@@ -1,4 +1,5 @@
 'use strict';
+var gImg;
 var gFont = 'impact';
 var gCanvas;
 var gCtx;
@@ -31,4 +32,11 @@ function getImgByID(id) {
 
 function updateText(text) {
     gMeme.lines[gMeme.selectedLineIdx].txt = text;
+    renderMeme();
+}
+
+function setSelectedImage(imgid) {
+    gMeme.selectedImgId = +imgid;
+    renderMeme();
+    togglePage();
 }
