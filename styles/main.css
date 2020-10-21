@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: lightblue;
+}
+
+.canvas-container{
+    background-color: grey;
+    width: 100vw;
+    height: 500px;
+    border: 1px solid red;
+}
+
+canvas{
+    display: block;
+    margin: 20px auto;
+    border: 1px solid black;
+
+}
+
+h1{
+    text-align: center;
+}
