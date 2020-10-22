@@ -3,7 +3,9 @@
 function init() {
     gCanvas = document.querySelector('#memegen-canvas');
     gCtx = gCanvas.getContext('2d');
-    // console.log('The context:', gCtx);
+    defaultTextsPoses = [
+        { x: (gCanvas.width / 2), y: (gCanvas.height / 2) }
+    ];
     renderGallery();
     addEventListeners();
 }
@@ -140,7 +142,6 @@ function addEventListeners() {
         // ev.stopPropagation();
         onMouseMoveLine(ev);
     });
-    // gCanvas.addEventListener('')
 }
 function onMouseMoveLine(ev) {
     if (gOnMouseDown) {
