@@ -19,7 +19,6 @@ function setCanvasState() {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
         drawTexts();
         drawSelectedLineRect();
-        gImgContent = gCanvas.toDataURL('image/jpeg');
     }
 }
 
@@ -155,10 +154,11 @@ function onMouseSelectLine(ev) {
     mouseSelectLine(ev);
     setCanvasState();
 }
-function onDownloadImg() {
+function onDownloadImg(elDownload) {
     toggleDownloadMode()
     setCanvasState();
-    elDownload.href = gImgContent;
+    var imgContent = gCanvas.toDataURL('image/jpeg');
+    elDownload.href = imgContent;
     toggleDownloadMode();
 }
 
