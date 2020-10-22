@@ -114,31 +114,19 @@ function onChangingFont(font) {
     setCanvasState();
 }
 
-// function drawRect() {
-//     gCtx.beginPath();
-//     gCtx.rect(61.93359375, 62.533203125, 123.8671875, 100);
-//     gCtx.stroke();
-// }
 
 function addEventListeners() {
     var text = document.querySelector('.text-input');
     text.addEventListener('keyup', (ev) => {
-        ev.preventDefault();
         onTextChange();
     });
     gCanvas.addEventListener('mousedown', (ev) => {
-        ev.preventDefault();
-        ev.stopPropagation();
         onMouseSelectLine(ev);
     });
     gCanvas.addEventListener('mouseup', (ev) => {
-        ev.preventDefault();
-        // ev.stopPropagation();
         toggleMouseState();
     });
     gCanvas.addEventListener('mousemove', (ev) => {
-        ev.preventDefault();
-        // ev.stopPropagation();
         onMouseMoveLine(ev);
     });
 }
@@ -154,11 +142,11 @@ function onMouseSelectLine(ev) {
     mouseSelectLine(ev);
     setCanvasState();
 }
+
 function onDownloadImg(elDownload) {
-    toggleDownloadMode()
+    toggleDownloadMode();
     setCanvasState();
     var imgContent = gCanvas.toDataURL('image/jpeg');
     elDownload.href = imgContent;
     // toggleDownloadMode();
 }
-

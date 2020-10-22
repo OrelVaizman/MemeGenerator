@@ -54,22 +54,20 @@ var gMeme = {
         {
             txt: 'Enter text here!',
             size: 20,
-            align: 'center',
+            align: 'left',
             color: 'red',
             font: 'impact',
             x: 225,
             y: 25,
-            width: 0,
         },
         {
             txt: 'Enter text here!2',
             size: 20,
-            align: 'center',
+            align: 'left',
             color: 'red',
             font: 'impact',
             x: 225,
             y: 445,
-            width: 0,
         }
     ]
 }
@@ -127,7 +125,6 @@ function addText() {
         font: 'impact',
         x: 250,
         y: 250,
-        width: 0,
     });
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
@@ -147,23 +144,20 @@ function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 function drawSelectedLineRect() {
-    if (gMeme.downloadMode === true) return;
+    if (gMeme.downloadMode === true || gMeme.selectedLineIdx === -1) return;
     var line = gMeme.lines[gMeme.selectedLineIdx]
     // console.log(line)
     var x = line.x;
     var y = line.y;
-    var width = line.width.width;
-    var height = line.size * 1.6;
-    var boundingY = y - height / 1.1 + 10;
-    gCtx.strokeRect(x - (width / 2), boundingY, width, height - 5);
+    var width = +gCtx.measureText(line.txt).width
+    var height = line.size * 1.286;
+    gCtx.strokeRect(x, y, width, -height);
 }
 
-
-
 function mouseMoveLine(ev) {
-    console.log('Mouse Move Line is ON')
-    gMeme.lines[0].x = ev.offsetX;
-    gMeme.lines[0].y = ev.offsetY;
+    if (gMeme.selectedLineIdx === -1) return;
+    gMeme.lines[gMeme.selectedLineIdx].x = ev.offsetX;
+    gMeme.lines[gMeme.selectedLineIdx].y = ev.offsetY;
 }
 
 function toggleMouseState() {
@@ -172,14 +166,11 @@ function toggleMouseState() {
 }
 
 function mouseSelectLine(ev) {
-
-    //TOBEUPDATED: Styling padding affecting the offset coords of the canvas
-    console.log(ev.offsetY)
-    // gMeme.selectedLineIdx = 
-    var foundIDX = gMeme.lines.findIndex((line) => {
-        return ev.offsetY > (line.y - line.size) && ev.offsetY < line.y
+    const { offsetX, offsetY } = ev;
+    gMeme.selectedLineIdx = gMeme.lines.findIndex((line) => {
+        var width = gCtx.measureText(line.txt).width
+        return offsetY > (line.y - line.size) && offsetY < line.y && offsetX > line.x && offsetX < line.x + width;
     })
-    console.log(foundIDX);
 }
 
 function toggleDownloadMode() {
