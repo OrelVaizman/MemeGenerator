@@ -25,15 +25,12 @@ function setCanvasState() {
 function drawTexts() {
     console.log('Wired')
     gMeme.lines.forEach((line) => {
-        // console.log('before creating', 'text:', line.txt, gCtx.measureText(line.txt))
-        gCtx.strokeStyle = 'black'
-        gCtx.fillStyle = 'white'
-        // gCtx.lineWidth = '2'
+        gCtx.strokeStyle = line.strokeStyle
+        gCtx.fillStyle = line.color
         gCtx.font = `${line.size}px ` + line.font
         gCtx.textAlign = line.align
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
-        line.width = gCtx.measureText(line.txt);
     })
 }
 
@@ -159,4 +156,9 @@ function onDownloadImg(elDownload) {
 
 function onSearchKeywords(keyword) {
     renderGallery(getFilteredKeywords(keyword));
+}
+
+function onSetStrokeStyle(strokeStyle) {
+    onSetStrokeStyle(strokeStyle);
+    setCanvasState();
 }

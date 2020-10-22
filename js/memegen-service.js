@@ -55,8 +55,9 @@ var gMeme = {
             txt: 'Enter text here!',
             size: 20,
             align: 'left',
-            color: 'red',
             font: 'impact',
+            color: 'red',
+            strokeStyle: 'black',
             x: 225,
             y: 25,
         },
@@ -64,8 +65,9 @@ var gMeme = {
             txt: 'Enter text here!2',
             size: 20,
             align: 'left',
-            color: 'red',
             font: 'impact',
+            color: 'red',
+            strokeStyle: 'black',
             x: 225,
             y: 445,
         }
@@ -185,4 +187,8 @@ function getFilteredKeywords(keyword) {
         }
     })
     return filteredKeywords
+}
+
+function setStrokeStyle(strokeStyle) {
+    gMeme.lines[gMeme.selectedLineIdx].strokeStyle = strokeStyle;
 }
