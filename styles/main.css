@@ -249,7 +249,7 @@ a:hover {
     height: 3.75rem;
 }
 
-.fourth-buttons-bar button {
+.fourth-buttons-bar button, a {
     border-radius: 0.75rem;
     background-color: #ff7f00;
     font-size: 1.25rem;

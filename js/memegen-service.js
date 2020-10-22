@@ -1,4 +1,5 @@
 'use strict';
+var gImgContent;
 var gOnMouseDown = false;
 var gCanvas;
 var defaultTextsPoses;
@@ -49,6 +50,7 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 2,
     selectedLineIdx: 0,
+    downloadMode: false,
     lines: [
         {
             txt: 'Enter text here!',
@@ -146,6 +148,7 @@ function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 function drawSelectedLineRect() {
+    if (gMeme.downloadMode === true) return;
     var line = gMeme.lines[gMeme.selectedLineIdx]
     // console.log(line)
     var x = line.x;
@@ -178,4 +181,8 @@ function mouseSelectLine(ev) {
         return ev.offsetY > (line.y - line.size) && ev.offsetY < line.y
     })
     console.log(foundIDX);
+}
+
+function toggleDownloadMode() {
+    gMeme.downloadMode = !gMeme.downloadMode;
 }

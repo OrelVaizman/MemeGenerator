@@ -19,8 +19,8 @@ function setCanvasState() {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
         drawTexts();
         drawSelectedLineRect();
+        gImgContent = gCanvas.toDataURL('image/jpeg');
     }
-
 }
 
 function drawTexts() {
@@ -115,11 +115,11 @@ function onChangingFont(font) {
     setCanvasState();
 }
 
-function drawRect() {
-    gCtx.beginPath();
-    gCtx.rect(61.93359375, 62.533203125, 123.8671875, 100);
-    gCtx.stroke();
-}
+// function drawRect() {
+//     gCtx.beginPath();
+//     gCtx.rect(61.93359375, 62.533203125, 123.8671875, 100);
+//     gCtx.stroke();
+// }
 
 function addEventListeners() {
     var text = document.querySelector('.text-input');
@@ -155,3 +155,10 @@ function onMouseSelectLine(ev) {
     mouseSelectLine(ev);
     setCanvasState();
 }
+function onDownloadImg() {
+    toggleDownloadMode()
+    setCanvasState();
+    elDownload.href = gImgContent;
+    toggleDownloadMode();
+}
+
