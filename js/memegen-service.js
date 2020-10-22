@@ -9,7 +9,7 @@ var gKeywords = {
 
 var gImgs = [
     {
-        id: 1, url: 'imgs/patterns/1.jpg', keywords: ['donald', 'trump', 'president', 'usa'],
+        id: 1, url: 'imgs/patterns/1.jpg', keywords: ['Donald', 'trump', 'president', 'usa'],
     }, {
         id: 2, url: 'imgs/patterns/2.jpg', keywords: ['dogs', 'puppies', 'cute', 'dog']
     }, {
@@ -175,4 +175,14 @@ function mouseSelectLine(ev) {
 
 function toggleDownloadMode() {
     gMeme.downloadMode = !gMeme.downloadMode;
+}
+
+function getFilteredKeywords(keyword) {
+    var filteredKeywords = [];
+    gImgs.forEach(img => {
+        if (img.keywords.find(word => word.includes(keyword))) {
+            filteredKeywords.push(img);
+        }
+    })
+    return filteredKeywords
 }

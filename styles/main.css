@@ -153,45 +153,28 @@ a:hover {
 
 .main-header {
     background-color: #ff7f00;
-    border-bottom: 5px solid #ff7f00;
-    margin: 0;
     height: 66px;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
 
-.main-nav li {
-    width: 150px;
-}
-
-.header-container {
-    height: 100%
-}
-
-.main-nav li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.main-nav {
-    height: 66px
-}
-
-.main-nav a {
-    display: flex;
-    border-right: 1px solid #8a8a8a;
-    padding: 17px;
+.main-header .main-nav a, li {
+    text-transform: capitalize;
+    padding-bottom: 1.4375rem;
 }
 
 .main-header .main-nav a {
-    text-transform: capitalize;
+    margin-inline-end: 0.75rem;
+    margin-inline-start: 0.75rem;
 }
 
-.main-header .main-nav li:hover {
-    border-bottom: 5px solid #040a2c;
+.main-header .main-nav li:not(:last-child) {
+    border-right: 1px solid #8a8a8a;
+}
+
+.padding-container {
+    padding-right: 3.125rem;
+    padding-left: 3.125rem;
 }
 
 /* Memegen-Container */
@@ -283,19 +266,51 @@ a:hover {
 
 /* Search */
 
-.search {
+/* .search {
     border-top: 1px solid #e1e0e0;
     padding: 1.875rem 1.875rem;
     height: 6.25rem
+} */
+
+.search-container {
+    min-height: 100px;
+    background-color: #fff;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    margin-bottom: 1.875rem;
 }
 
-/* .search>* {
-    text-transform: uppercase;
-    font-size: 1.125rem;
-    letter-spacing: 0.056rem;
-    transition: 35ms;
-    color: #818181;
-} */
+.main-container .keyowrds-populer li {
+    cursor: pointer;
+    margin-inline-end: 0.65rem;
+    text-transform: lowercase;
+    color: #040a2c;
+}
+
+.main-container .keyowrds-populer li.more-keywords {
+    font-size: 0.7rem;
+    padding-top: 0.5rem;
+}
+
+.main-container .search-container input[type="search"] {
+    margin-inline-end: 0.9375rem;
+    border: none;
+    text-transform: capitalize;
+    min-width: 10.3rem;
+    border-bottom: 2px solid #040a2c;
+}
+
+.main-container .search-container input[type="search"]:focus {
+    outline: none;
+}
+
+.main-container .search-container .search-icon {
+    position: absolute;
+    left: 12.8125rem;
+    bottom: 32px;
+    font-size: 1.9rem;
+}
 
 /* Footer */
 

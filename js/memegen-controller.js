@@ -42,10 +42,10 @@ function onTextChange() {
     var text = document.querySelector('.text-input').value;
     updateText(text);
 }
-function renderGallery() {
+function renderGallery(imgs = gImgs) {
     var elGallery = document.querySelector('.gallery-container');
     console.log(elGallery)
-    var strHTML = gImgs.map((img) => {
+    var strHTML = imgs.map((img) => {
         return `<img src="${img.url}" id="${img.id}" class="gallery-item" onclick="onImageSelect(this.id)">`
     })
     elGallery.innerHTML = strHTML.join('');
@@ -129,6 +129,12 @@ function addEventListeners() {
     gCanvas.addEventListener('mousemove', (ev) => {
         onMouseMoveLine(ev);
     });
+
+    var search = document.querySelector('#search');
+    search.addEventListener('keyup', (ev) => {
+        // console.log(search.value);
+        onSearchKeywords(search.value);
+    })
 }
 function onMouseMoveLine(ev) {
     if (gOnMouseDown) {
@@ -149,4 +155,8 @@ function onDownloadImg(elDownload) {
     var imgContent = gCanvas.toDataURL('image/jpeg');
     elDownload.href = imgContent;
     // toggleDownloadMode();
+}
+
+function onSearchKeywords(keyword) {
+    renderGallery(getFilteredKeywords(keyword));
 }
