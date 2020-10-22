@@ -61,9 +61,9 @@ function onImageSelect(imgid) {
 function openMemeGen() {
     //Currently not toggle, TOBEUPDATED
     var elGallery = document.querySelector('.gallery-container');
-    var elMemeGen = document.querySelector('.memegen-container');
+    var elMemeGen = document.querySelector('.meme-display-container');
     elGallery.style.display = ('none');
-    elMemeGen.style.display = ('block')
+    elMemeGen.style.display = ('flex')
 }
 
 function onSetFontSize(action) {

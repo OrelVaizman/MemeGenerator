@@ -170,11 +170,8 @@ a:hover {
 .main-nav a {
     display: flex;
     border-right: 1px solid #8a8a8a;
+    padding: 17px;
 }
-
-/* .main-nav li:last-child {
-    border-right: 1px solid #1d1d1d;
-} */
 
 .main-header .main-nav a {
     text-transform: capitalize;
@@ -186,8 +183,28 @@ a:hover {
 
 /* Memegen-Container */
 
-.memegen-container {
+.meme-display-container {
     display: none;
+}
+
+/* Meme Editor */
+
+.editor-container {
+    text-align: center;
+    width: 23.375rem;
+    margin-right: 6.25rem;
+    margin-left: 6.25rem;
+}
+
+.text-input {
+    border-radius: 12px;
+    text-align: center;
+    height: 3.75rem;
+}
+
+.editor-buttons {
+    border-radius: 12px;
+    padding: 0.625rem 0.75rem;
 }
 
 /* Gallery */
@@ -220,15 +237,16 @@ a:hover {
 .search {
     border-top: 1px solid #e1e0e0;
     padding: 1.875rem 1.875rem;
+    height: 6.25rem
 }
 
-.search>* {
+/* .search>* {
     text-transform: uppercase;
     font-size: 1.125rem;
     letter-spacing: 0.056rem;
     transition: 35ms;
     color: #818181;
-}
+} */
 
 /* Footer */
 

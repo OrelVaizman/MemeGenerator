@@ -25,33 +25,41 @@
     <section class="search flex container">
         <input type="text" name="search-input" class="search-input" id="search" placeholder="Enter search keyword">
     </section>
-    <div class="memegen-container">
-        <div class="canvas-container">
-            <canvas id="memegen-canvas" height="450" width="450"></canvas>
-        </div>
-        <div class="editor-container">
-            <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
-            <button class="increase-size" onclick="onSetFontSize('increase')">+</button>
-            <button class="decrease-size" onclick="onSetFontSize('decrease')">-</button>
-            <button class="decrease-size" onclick="onSwitchLines()">Switch Line</button>
-            <button class="decrease-size" onclick="onMoveLine('up')">Move it UP!</button>
-            <button class="decrease-size" onclick="onMoveLine('down')">Move it DOWN!</button>
-        </div>
-    </div>
-    <main class="main-content">
-        <section class="modal">
-            <h1>Join us to get access to the latest stories!</h1>
-            <form action="">
-                <label for="email-form">Enter your email:</label>
-                <input type="email" id="email-form" name="email" placeholder="Enter Your Email">
-            </form>
-            <div class="modal-buttons">
-                <button class="btn-close-modal" onclick="toggleModal()">Close</button>
-                <button class="btn-close-modal" onclick="toggleModal()">Submit</button>
+
+    <main class="main-content container">
+        <div class="memegen-container flex">
+            <div class="meme-display-container">
+                <canvas id="memegen-canvas" height="450" width="450"></canvas>
+                <div class="editor-container flex column">
+                    <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
+                    <div class="first-buttons">
+                        <button class="editor-buttons" onclick="onSwitchLines()">
+                            <img src="imgs/buttons/switch-lines.png">
+                        </button>
+                        <button class="editor-buttons"><img src="imgs/buttons/add.png"></button>
+                        <button class="editor-buttons"><img src="imgs/buttons/trash.png"></button>
+                    </div>
+                    <button class="increase-size" onclick="onSetFontSize('increase')">+</button>
+                    <button class="decrease-size" onclick="onSetFontSize('decrease')">-</button>
+                    <button class="decrease-size" onclick="onSwitchLines()">Switch Line</button>
+                    <button class="decrease-size" onclick="onMoveLine('up')">Move it UP!</button>
+                    <button class="decrease-size" onclick="onMoveLine('down')">Move it DOWN!</button>
+                </div>
             </div>
-        </section>
+        </div>
         <section class="gallery-container grid">
         </section>
+        <!-- <section class="modal">
+                    <h1>Join us to get access to the latest stories!</h1>
+                    <form action="">
+                        <label for="email-form">Enter your email:</label>
+                        <input type="email" id="email-form" name="email" placeholder="Enter Your Email">
+                    </form>
+                    <div class="modal-buttons">
+                        <button class="btn-close-modal" onclick="toggleModal()">Close</button>
+                        <button class="btn-close-modal" onclick="toggleModal()">Submit</button>
+                    </div>
+                </section> -->
     </main>
     <footer class="main-footer flex column align-center">
         <div class="footer-logo colored-dot logo"><a href="#">Blogin</a>.</div>
