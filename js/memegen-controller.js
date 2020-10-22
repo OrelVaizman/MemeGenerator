@@ -15,8 +15,10 @@ function setCanvasState() {
     img.src = selectedImg.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
-        drawTexts()
+        drawTexts();
+        drawSelectedLineRect();
     }
+
 }
 
 function drawTexts() {
@@ -30,16 +32,17 @@ function drawTexts() {
         gCtx.textAlign = line.align
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
-        line.width = gCtx.measureText(line.txt).width;
+        line.width = gCtx.measureText(line.txt);
     })
 }
 
 function addEventListener() {
     var text = document.querySelector('.text-input');
     text.addEventListener('keyup', (ev) => {
-        // ev.preventDefault();
+        ev.preventDefault();
         onTextChange();
     });
+    
 }
 
 function onTextChange() {
@@ -115,4 +118,10 @@ function onAlignText(action) {
 function onChangingFont(font) {
     setFontFamily(font);
     setCanvasState();
+}
+
+function drawRect() {
+    gCtx.beginPath();
+    gCtx.rect(61.93359375, 62.533203125, 123.8671875, 100);
+    gCtx.stroke();
 }

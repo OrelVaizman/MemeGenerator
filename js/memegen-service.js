@@ -141,3 +141,17 @@ function setFontFamily(font) {
     if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
+function drawSelectedLineRect() {
+    var line = gMeme.lines[gMeme.selectedLineIdx]
+    console.log(line)
+    var x = line.x;
+    var y = line.y;
+    var width = line.width.width;
+    var height = line.size * 1.6;
+    var boundingY = y - height / 1.1 + 10;
+    gCtx.strokeRect(x - (width / 2), boundingY, width, height - 5);
+}
+
+function checkForDrag(params) {
+    
+}
