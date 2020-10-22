@@ -8,7 +8,7 @@ function init() {
     addEventListener();
 }
 
-function renderMeme() {
+function setCanvasState() {
     var selectedImg = getImgByID(gMeme.selectedImgId);
     // console.log(selectedImg)
     var img = new Image()
@@ -46,8 +46,9 @@ function onTextChange() {
 }
 function renderGallery() {
     var elGallery = document.querySelector('.gallery-container');
+    console.log(elGallery)
     var strHTML = gImgs.map((img) => {
-        return `<img src="${img.url}" id="${img.id}" onclick="onImageSelect(this.id)">`
+        return `<img src="${img.url}" id="${img.id}" class="gallery-item" onclick="onImageSelect(this.id)">`
     })
     elGallery.innerHTML = strHTML.join('');
 }
@@ -57,15 +58,17 @@ function onImageSelect(imgid) {
     setSelectedImage(imgid);
 }
 
-function togglePage() {
+function openMemeGen() {
     //Currently not toggle, TOBEUPDATED
     var elGallery = document.querySelector('.gallery-container');
+    var elMemeGen = document.querySelector('.memegen-container');
     elGallery.style.display = ('none');
+    elMemeGen.style.display = ('block')
 }
 
 function onSetFontSize(action) {
     setFontSize(action);
-    renderMeme();
+    setCanvasState();
 }
 
 function onSwitchLines() {
@@ -81,7 +84,7 @@ function onMoveLine(action) {
     //     gMeme.lines[gMeme.selectedLineIdx].y === 5;
     // }
     moveLine(action);
-    renderMeme();
+    setCanvasState();
 }
 
 function updateTextInput() {

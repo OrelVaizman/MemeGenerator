@@ -5,27 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
-    <title>Orel Vaizman's Meme Generator!</title>
+    <script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js" data-auto-a11y="true"></script>
+    <title>Pixel-Perfect</title>
 </head>
 
 <body onload="init()">
-    <h1>Let the party begin!</h1>
-    <div class="canvas-container">
-        <canvas id="memegen-canvas" height="450" width="450"></canvas>
+    <header class="main-header">
+        <nav class="header-container container flex align-center space-between">
+            <div class="main-logo logo colored-dot"><a href="#">Pro-MeMe</a>.</div>
+            <button class="mobile-menu" onclick="onToggleMenu()"><i class="fas fa-bars"></i></button>
+            <ul class="main-nav clean-list flex">
+                <li class="close-menu-li"><button class="close-menu" onclick="onToggleMenu()"><i
+                            class="fas fa-times"></i></button></li>
+                <li><a href="">Gallery</a></li>
+                <li><a href="">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="search flex container">
+        <input type="text" name="search-input" class="search-input" id="search" placeholder="Enter search keyword">
+    </section>
+    <div class="memegen-container">
+        <div class="canvas-container">
+            <canvas id="memegen-canvas" height="450" width="450"></canvas>
+        </div>
+        <div class="editor-container">
+            <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
+            <button class="increase-size" onclick="onSetFontSize('increase')">+</button>
+            <button class="decrease-size" onclick="onSetFontSize('decrease')">-</button>
+            <button class="decrease-size" onclick="onSwitchLines()">Switch Line</button>
+            <button class="decrease-size" onclick="onMoveLine('up')">Move it UP!</button>
+            <button class="decrease-size" onclick="onMoveLine('down')">Move it DOWN!</button>
+        </div>
     </div>
-    <div class="editor-container">
-        <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
-        <button class="increase-size" onclick="onSetFontSize('increase')">+</button>
-        <button class="decrease-size" onclick="onSetFontSize('decrease')">-</button>
-        <button class="decrease-size" onclick="onSwitchLines()">Switch Line</button>
-        <button class="decrease-size" onclick="onMoveLine('up')">Move it UP!</button>
-        <button class="decrease-size" onclick="onMoveLine('down')">Move it DOWN!</button>
-    </div>
-    <div class="gallery-container"></div>
+    <main class="main-content">
+        <section class="modal">
+            <h1>Join us to get access to the latest stories!</h1>
+            <form action="">
+                <label for="email-form">Enter your email:</label>
+                <input type="email" id="email-form" name="email" placeholder="Enter Your Email">
+            </form>
+            <div class="modal-buttons">
+                <button class="btn-close-modal" onclick="toggleModal()">Close</button>
+                <button class="btn-close-modal" onclick="toggleModal()">Submit</button>
+            </div>
+        </section>
+        <section class="gallery-container grid">
+        </section>
+    </main>
+    <footer class="main-footer flex column align-center">
+        <div class="footer-logo colored-dot logo"><a href="#">Blogin</a>.</div>
+        <small class="copyright">© 2014 Blogin.com - All Rights Reserved - Find more free Templates at <span
+                class="bolded-span">Pixelhint.com</span></small>
+        <ul class="nav-social clean-list flex">
+            <li class="facebook-icon social-li"><a href="" class="socialmedia-link"><i
+                        class="fab fa-facebook-f"></i></a></li>
+            <li class="twitter-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li class="behance-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-behance"></i></a>
+            </li>
+            <li class="dribble-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-dribbble"></i></a>
+            </li>
+        </ul>
+    </footer>
     <script src="js/util-service.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/memegen-service.js"></script>
     <script src="js/memegen-controller.js"></script>
+    <script>
+        function onToggleMenu() {
+            var elMobileNav = document.querySelector('.main-nav');
+            elMobileNav.classList.toggle('open-menu')
+        }
+
+        function toggleModal() {
+            var currDisplay = document.querySelector('.modal').style.display;
+            if (currDisplay === 'block') currDisplay = 'none';
+            else currDisplay = 'block';
+            document.querySelector('.modal').style.display = currDisplay;
+        }
+    </script>
 </body>
 
 </html>
