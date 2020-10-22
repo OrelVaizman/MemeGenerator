@@ -1,4 +1,5 @@
 'use strict';
+var gOnMouseDown = false;
 var gCanvas;
 var gCtx;
 var gKeywords = {
@@ -86,6 +87,7 @@ function setSelectedImage(imgid) {
 }
 
 function setFontSize(action) {
+    //TOBEUPDATED: validation of -1 of the selectedLine
     if (gMeme.lines.length === 0) return;
     if (action === 'increase') {
         gMeme.lines[gMeme.selectedLineIdx].size++
@@ -143,7 +145,7 @@ function setFontFamily(font) {
 }
 function drawSelectedLineRect() {
     var line = gMeme.lines[gMeme.selectedLineIdx]
-    console.log(line)
+    // console.log(line)
     var x = line.x;
     var y = line.y;
     var width = line.width.width;
@@ -152,6 +154,26 @@ function drawSelectedLineRect() {
     gCtx.strokeRect(x - (width / 2), boundingY, width, height - 5);
 }
 
-function checkForDrag(params) {
-    
+
+
+function mouseMoveLine(ev) {
+    console.log('Mouse Move Line is ON')
+    gMeme.lines[0].x = ev.offsetX;
+    gMeme.lines[0].y = ev.offsetY;
+}
+
+function toggleMouseState() {
+    gOnMouseDown = !gOnMouseDown;
+    setCanvasState();
+}
+
+function mouseSelectLine(ev) {
+
+    //TOBEUPDATED: Styling padding affecting the offset coords of the canvas
+    console.log(ev.offsetY)
+    // gMeme.selectedLineIdx = 
+    var foundIDX = gMeme.lines.findIndex((line) => {
+        return ev.offsetY > (line.y - line.size) && ev.offsetY < line.y
+    })
+    console.log(foundIDX);
 }

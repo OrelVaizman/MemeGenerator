@@ -5,7 +5,7 @@ function init() {
     gCtx = gCanvas.getContext('2d');
     // console.log('The context:', gCtx);
     renderGallery();
-    addEventListener();
+    addEventListeners();
 }
 
 function setCanvasState() {
@@ -25,7 +25,7 @@ function drawTexts() {
     console.log('Wired')
     gMeme.lines.forEach((line) => {
         // console.log('before creating', 'text:', line.txt, gCtx.measureText(line.txt))
-        gCtx.strokeStyle = 'red'
+        gCtx.strokeStyle = 'black'
         gCtx.fillStyle = 'white'
         // gCtx.lineWidth = '2'
         gCtx.font = `${line.size}px ` + line.font
@@ -36,14 +36,6 @@ function drawTexts() {
     })
 }
 
-function addEventListener() {
-    var text = document.querySelector('.text-input');
-    text.addEventListener('keyup', (ev) => {
-        ev.preventDefault();
-        onTextChange();
-    });
-    
-}
 
 function onTextChange() {
     var text = document.querySelector('.text-input').value;
@@ -79,6 +71,7 @@ function onSetFontSize(action) {
 function onSwitchLines() {
     setSelectedLine();
     updateTextInput();
+    setCanvasState();
 }
 
 function onMoveLine(action) {
@@ -124,4 +117,40 @@ function drawRect() {
     gCtx.beginPath();
     gCtx.rect(61.93359375, 62.533203125, 123.8671875, 100);
     gCtx.stroke();
+}
+
+function addEventListeners() {
+    var text = document.querySelector('.text-input');
+    text.addEventListener('keyup', (ev) => {
+        ev.preventDefault();
+        onTextChange();
+    });
+    gCanvas.addEventListener('mousedown', (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        onMouseSelectLine(ev);
+    });
+    gCanvas.addEventListener('mouseup', (ev) => {
+        ev.preventDefault();
+        // ev.stopPropagation();
+        toggleMouseState();
+    });
+    gCanvas.addEventListener('mousemove', (ev) => {
+        ev.preventDefault();
+        // ev.stopPropagation();
+        onMouseMoveLine(ev);
+    });
+    // gCanvas.addEventListener('')
+}
+function onMouseMoveLine(ev) {
+    if (gOnMouseDown) {
+        mouseMoveLine(ev);
+        setCanvasState();
+    }
+}
+
+function onMouseSelectLine(ev) {
+    toggleMouseState();
+    mouseSelectLine(ev);
+    setCanvasState();
 }
