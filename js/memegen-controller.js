@@ -88,5 +88,23 @@ function onMoveLine(action) {
 }
 
 function updateTextInput() {
+    if (gMeme.lines.length === 0) return;
     document.querySelector('.text-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
+}
+
+function onAddText() {
+    addText();
+    setCanvasState();
+    updateTextInput();
+}
+
+function onDeleteText() {
+    deleteText();
+    setCanvasState();
+    updateTextInput();
+}
+
+function onAlignText(action) {
+    alignText(action);
+    setCanvasState();
 }

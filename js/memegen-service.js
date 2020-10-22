@@ -52,7 +52,7 @@ var gMeme = {
         {
             txt: 'Enter text here!',
             size: 20,
-            align: 'left',
+            align: 'center',
             color: 'red',
             font: 'impact',
             x: 250,
@@ -61,11 +61,11 @@ var gMeme = {
         {
             txt: 'Enter text here!2',
             size: 20,
-            align: 'left',
+            align: 'center',
             color: 'red',
             font: 'impact',
-            x: 100,
-            y: 30,
+            x: 250,
+            y: 430,
         }
     ]
 }
@@ -86,6 +86,7 @@ function setSelectedImage(imgid) {
 }
 
 function setFontSize(action) {
+    if (gMeme.lines.length === 0) return;
     if (action === 'increase') {
         gMeme.lines[gMeme.selectedLineIdx].size++
     } else if (action === 'decrease') {
@@ -109,4 +110,26 @@ function moveLine(action) {
         gMeme.lines[gMeme.selectedLineIdx].y -= 10;
     }
     console.log(gMeme.lines[gMeme.selectedLineIdx].y)
+}
+
+function addText() {
+    gMeme.lines.push({
+        txt: 'Text added',
+        size: 20,
+        align: 'center',
+        color: 'red',
+        font: 'impact',
+        x: 250,
+        y: 250,
+    });
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+
+function deleteText() {
+    gMeme.lines.splice([gMeme.selectedLineIdx], 1);
+    gMeme.selectedLineIdx = 0
+}
+
+function alignText(action) {
+gMeme.lines[gMeme.selectedLineIdx].align = action;
 }
