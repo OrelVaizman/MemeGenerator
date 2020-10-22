@@ -159,6 +159,6 @@ function onDownloadImg(elDownload) {
     setCanvasState();
     var imgContent = gCanvas.toDataURL('image/jpeg');
     elDownload.href = imgContent;
-    toggleDownloadMode();
+    // toggleDownloadMode();
 }
 

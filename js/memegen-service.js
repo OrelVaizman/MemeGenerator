@@ -147,7 +147,7 @@ function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 function drawSelectedLineRect() {
-    if (gMeme.downloadMode === true) return
+    if (gMeme.downloadMode === true) return;
     var line = gMeme.lines[gMeme.selectedLineIdx]
     // console.log(line)
     var x = line.x;
