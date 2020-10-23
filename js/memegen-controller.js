@@ -7,6 +7,7 @@ function init() {
     addEventListeners();
     loadSavedMemes();
     renderSavedGallery();
+    renderKeywords();
 }
 
 function setCanvasState() {
@@ -49,7 +50,6 @@ function onImageSelect(imgid) {
 }
 
 function openMemeGen() {
-    //Currently not toggle, TOBEUPDATED
     var elGallery = document.querySelector('.main-container');
     var elMemeGen = document.querySelector('.meme-display-container');
     elGallery.style.display = ('none');
@@ -119,7 +119,6 @@ function addEventListeners() {
 
     var search = document.querySelector('#search');
     search.addEventListener('keyup', (ev) => {
-        // console.log(search.value);
         onSearchKeywords(search.value);
     })
 }
@@ -141,10 +140,11 @@ function onDownloadImg(elDownload) {
     setCanvasState();
     var imgContent = gCanvas.toDataURL('image/jpeg');
     elDownload.href = imgContent;
-    // toggleDownloadMode();
+    toggleDownloadMode();
 }
 
 function onSearchKeywords(keyword) {
+    console.log(keyword)
     renderGallery(getFilteredKeywords(keyword));
 }
 
@@ -169,13 +169,6 @@ function onSaveImage() {
 }
 
 
-// function renderKeywords() {
-//     gKeywords.sort(a, b){
-//         if (a)
-//     }
-
-// }
-
 function renderSavedGallery() {
     var elGallery = document.querySelector('.savedmemes-gallery-container');
     var strHTML = gSavedCanvas.map((meme, idx) => {
@@ -191,9 +184,26 @@ function onSavedMemeSelect(savedMemeIdx) {
 }
 
 function openSavedMemesGallery() {
-    console.log('opening saved memes gallery')
+    var elMemeGen = document.querySelector('.meme-display-container');
     var elGallery = document.querySelector('.gallery-container');
     var elSavedMemesGallery = document.querySelector('.savedmemes-gallery-container');
     elGallery.style.display = ('none');
-    elSavedMemesGallery.style.display = ('flex');
+    elMemeGen.style.display = ('none')
+    elSavedMemesGallery.style.display = ('grid');
+}
+
+
+function onToggleMenu() {
+    var elMobileNav = document.querySelector('.main-nav');
+    elMobileNav.classList.toggle('open-menu')
+}
+
+function renderKeywords() {
+    const elKeywordsList = document.querySelector('.popular-keywords');
+    const keywords = gKeywords;
+    var strHTML;
+    for (var key in keywords) {
+        strHTML += `<li class="title-keywords" style="font-size:${keywords[key] / 2}rem" onclick="onSearchKeywords('${key}')">${key}</li>`
+    }
+    elKeywordsList.innerHTML += strHTML;
 }

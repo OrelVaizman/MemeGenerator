@@ -92,7 +92,6 @@ function setSelectedImage(imgid) {
 }
 
 function setFontSize(action) {
-    //TOBEUPDATED: validation of -1 of the selectedLine
     if (gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) return;
     if (action === 'increase') {
         gMeme.lines[gMeme.selectedLineIdx].size++
@@ -253,4 +252,4 @@ function setSavedMeme(savedMemeIdx) {
     })
     gMeme.lines = lines;
     gMeme.selectedImgId = newId;
-}   
+}

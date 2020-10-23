@@ -277,19 +277,17 @@ input[type='file'] {
     min-height: 100px;
     background-color: #fff;
     padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
     position: relative;
-    margin-bottom: 1.875rem;
 }
 
-.main-container .keyowrds-populer li {
+.main-container .popular-keywords li {
     cursor: pointer;
     margin-inline-end: 0.65rem;
     text-transform: lowercase;
     color: #040a2c;
 }
 
-.main-container .keyowrds-populer li.more-keywords {
+.main-container .popular-keywords li.more-keywords {
     font-size: 0.7rem;
     padding-top: 0.5rem;
 }
@@ -383,6 +381,10 @@ input[type='file'] {
     justify-content: center;
 }
 
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
 /* list-helpers */
 
 .clean-list {
@@ -416,7 +418,7 @@ input[type='file'] {
             transition: transform .8s;
         }
         .main-header .main-nav li:hover {
-            border-bottom: 5px solid #ff7f00 ;
+            border-bottom: 5px solid #ff7f00;
         }
         .main-nav li {
             height: 130px;
