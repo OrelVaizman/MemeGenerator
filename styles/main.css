@@ -115,8 +115,6 @@ a {
 /* Layout */
 
 .container {
-    padding-right: 3.125rem;
-    padding-left: 3.125rem;
     margin: 0 auto;
 }
 
@@ -164,15 +162,16 @@ a {
 
 .canvas-style {
     margin: 1.25rem;
+    max-width: 100%;
 }
 
 /* Meme Editor */
 
 .editor-container {
     text-align: center;
-    width: 23.375rem;
-    margin-right: 6.25rem;
-    margin-left: 6.25rem;
+    /* width: 23.375rem; */
+    /* margin-right: 6.25rem;
+    margin-left: 6.25rem; */
 }
 
 .text-input {
@@ -206,6 +205,7 @@ a {
 }
 
 .fourth-buttons-bar {
+    flex-wrap: wrap;
     margin-top: 0.625rem;
     /* width: 22.5rem; */
 }
@@ -391,14 +391,16 @@ input[type='file'] {
     padding: 0;
 }
 
-/* Tablet */
-
-@media (max-width: 1000px) {
+@media (max-width: 500px) {
     html {
         font-size: 13px;
     }
     .meme-display-container {
         flex-direction: column;
+    }
+    .main-nav {
+        width: 200px;
+        text-align: center;
     }
     /* Mobile */
     @media (max-width: 800px) {
@@ -414,7 +416,7 @@ input[type='file'] {
             transition: transform .8s;
         }
         .main-header .main-nav li:hover {
-            border-top: 5px solid #58c93a;
+            border-bottom: 5px solid #ff7f00 ;
         }
         .main-nav li {
             height: 130px;
@@ -440,9 +442,21 @@ input[type='file'] {
     }
 }
 
-@media (max-width: 550) {
+@media (min-width: 557px) {
+    .editor-container {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 801px) {
+    .container {
+        padding-right: 3.125rem;
+        padding-left: 3.125rem;
+    }
+}
+
+@media (max-width: 940px) and (min-width: 557px) {
     .canvas-style {
-        height: 400;
-        width: 400;
+        width: 50%;
     }
 }
