@@ -46,6 +46,7 @@ var gImgs = [
         id: 18, url: 'imgs/patterns/18.jpg', keywords: ['vision', 'one-day']
     },
 ];
+
 var gMeme = {
     selectedImgId: 2,
     selectedLineIdx: 0,
@@ -54,21 +55,19 @@ var gMeme = {
         {
             txt: 'Enter text here!',
             size: 20,
-            align: 'left',
             font: 'impact',
-            color: 'red',
+            color: 'white',
             strokeStyle: 'black',
-            x: 225,
+            x: 170,
             y: 25,
         },
         {
-            txt: 'Enter text here!2',
+            txt: 'Enter another text here!',
             size: 20,
-            align: 'left',
             font: 'impact',
-            color: 'red',
+            color: 'white',
             strokeStyle: 'black',
-            x: 225,
+            x: 170,
             y: 445,
         }
     ]
@@ -91,7 +90,7 @@ function setSelectedImage(imgid) {
 
 function setFontSize(action) {
     //TOBEUPDATED: validation of -1 of the selectedLine
-    if (gMeme.lines.length === 0) return;
+    if (gMeme.lines.length === 0 || gMeme.selectedLineIdx === -1) return;
     if (action === 'increase') {
         gMeme.lines[gMeme.selectedLineIdx].size++
     } else if (action === 'decrease') {
@@ -102,12 +101,13 @@ function setFontSize(action) {
 
 function setSelectedLine() {
     if (gMeme.selectedLineIdx < gMeme.lines.length - 1) {
-        gMeme.selectedLineIdx++
+        gMeme.selectedLineIdx++;
     } else if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
-        gMeme.selectedLineIdx = 0
+        gMeme.selectedLineIdx = 0;
     }
     console.log(gMeme.selectedLineIdx);
 }
+
 function moveLine(action) {
     if (gMeme.lines.length === 0) return;
     if (action === 'down') {
@@ -122,23 +122,30 @@ function addText() {
     gMeme.lines.push({
         txt: 'Text added',
         size: 20,
-        align: 'center',
-        color: 'red',
+        align: 'left',
         font: 'impact',
+        color: 'white',
+        strokeStyle: 'black',
         x: 250,
         y: 250,
     });
+
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
 function deleteText() {
     gMeme.lines.splice([gMeme.selectedLineIdx], 1);
-    gMeme.selectedLineIdx = 0
+    gMeme.selectedLineIdx = 0;
 }
 
 function alignText(action) {
-    if (gMeme.lines.length === 0) return;
-    gMeme.lines[gMeme.selectedLineIdx].align = action;
+    const selectedLine = gMeme.selectedLineIdx;
+    const line = gMeme.lines;
+    if (line.length === 0 || line === -1) return;
+    if (action === 'right') line[selectedLine].x += 50;
+    if (action === 'left') line[selectedLine].x -= 50
+    if (action === 'center') return;
+
 }
 
 function setFontFamily(font) {
@@ -146,13 +153,13 @@ function setFontFamily(font) {
     gMeme.lines[gMeme.selectedLineIdx].font = font;
 }
 function drawSelectedLineRect() {
-    if (gMeme.downloadMode === true || gMeme.selectedLineIdx === -1) return;
-    var line = gMeme.lines[gMeme.selectedLineIdx]
-    // console.log(line)
-    var x = line.x;
-    var y = line.y;
-    var width = +gCtx.measureText(line.txt).width
-    var height = line.size * 1.286;
+    const selectedLine = gMeme.selectedLineIdx
+    const line = gMeme.lines[selectedLine]
+    if (gMeme.downloadMode === true || selectedLine === -1 || gMeme.lines.length === 0) return;
+    const x = line.x;
+    const y = line.y;
+    const width = +gCtx.measureText(line.txt).width
+    const height = line.size * 1.286
     gCtx.strokeRect(x, y, width, -height);
 }
 
@@ -186,9 +193,14 @@ function getFilteredKeywords(keyword) {
             filteredKeywords.push(img);
         }
     })
-    return filteredKeywords
+    return filteredKeywords;
 }
 
 function setStrokeStyle(strokeStyle) {
     gMeme.lines[gMeme.selectedLineIdx].strokeStyle = strokeStyle;
+
+}
+
+function setColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
 }

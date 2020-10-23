@@ -3,17 +3,14 @@
 function init() {
     gCanvas = document.querySelector('#memegen-canvas');
     gCtx = gCanvas.getContext('2d');
-    defaultTextsPoses = [
-        { x: (gCanvas.width / 2), y: (gCanvas.height / 2) }
-    ];
     renderGallery();
     addEventListeners();
 }
 
 function setCanvasState() {
-    var selectedImg = getImgByID(gMeme.selectedImgId);
+    const selectedImg = getImgByID(gMeme.selectedImgId);
     // console.log(selectedImg)
-    var img = new Image()
+    const img = new Image()
     img.src = selectedImg.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
@@ -23,31 +20,28 @@ function setCanvasState() {
 }
 
 function drawTexts() {
-    console.log('Wired')
     gMeme.lines.forEach((line) => {
         gCtx.strokeStyle = line.strokeStyle
         gCtx.fillStyle = line.color
         gCtx.font = `${line.size}px ` + line.font
-        gCtx.textAlign = line.align
+        gCtx.textAlign = 'left'
         gCtx.fillText(line.txt, line.x, line.y)
         gCtx.strokeText(line.txt, line.x, line.y)
     })
 }
 
-
 function onTextChange() {
     var text = document.querySelector('.text-input').value;
     updateText(text);
 }
+
 function renderGallery(imgs = gImgs) {
     var elGallery = document.querySelector('.gallery-container');
-    console.log(elGallery)
     var strHTML = imgs.map((img) => {
         return `<img src="${img.url}" id="${img.id}" class="gallery-item" onclick="onImageSelect(this.id)">`
     })
     elGallery.innerHTML = strHTML.join('');
 }
-
 
 function onImageSelect(imgid) {
     setSelectedImage(imgid);
@@ -159,6 +153,10 @@ function onSearchKeywords(keyword) {
 }
 
 function onSetStrokeStyle(strokeStyle) {
-    onSetStrokeStyle(strokeStyle);
+    setStrokeStyle(strokeStyle);
+    setCanvasState();
+}
+function onSetColor(color) {
+    setColor(color);
     setCanvasState();
 }

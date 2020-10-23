@@ -5,26 +5,6 @@
 /* Font-Face */
 
 @font-face {
-    font-family: lato;
-    src: url(/fonts/lato/Lato-Regular.ttf);
-}
-
-@font-face {
-    font-family: lato-bold;
-    src: url(/fonts/lato/Lato-Bold.ttf);
-}
-
-@font-face {
-    font-family: euro;
-    src: url(/fonts/euro/euro.ttf);
-}
-
-@font-face {
-    font-family: euro-bold;
-    src: url(/fonts/euro/euro-bold.ttf);
-}
-
-@font-face {
     font-family: montserrat;
     src: url(/fonts/montserrat/Montserrat-Regular.ttf);
 }
@@ -78,10 +58,11 @@ a {
     color: #ffffff;
 }
 
+/* 
 a:hover {
     color: #040a2c;
     ;
-}
+} */
 
 .logo {
     font-size: 2.5rem;
@@ -184,7 +165,7 @@ a:hover {
 }
 
 .canvas-style {
-    margin: 1.25rem;
+    /* margin: 1.25rem; */
 }
 
 /* Meme Editor */
@@ -266,12 +247,6 @@ a:hover {
 
 /* Search */
 
-/* .search {
-    border-top: 1px solid #e1e0e0;
-    padding: 1.875rem 1.875rem;
-    height: 6.25rem
-} */
-
 .search-container {
     min-height: 100px;
     background-color: #fff;
@@ -333,8 +308,8 @@ a:hover {
 }
 
 .social-li {
-    background-color: #e5e5e5;
-    padding: 0.8125rem 1rem;
+    /* background-color: #e5e5e5; */
+    /* padding: 0.8125rem 1rem; */
     text-align: center;
 }
 
@@ -347,19 +322,15 @@ a:hover {
 }
 
 .facebook-icon:hover {
-    background-color: #516fad
+    color: black
 }
 
-.twitter-icon:hover {
-    background-color: #2babe3
+.linkedin-icon:hover {
+    color: black
 }
 
-.behance-icon:hover {
-    background-color: #f26798
-}
-
-.dribble-icon:hover {
-    background-color: #0056ff
+.github-icon:hover {
+    color: black
 }
 
 .copyright {

@@ -79,10 +79,10 @@
                                 <option value="verdana">Verdana</option>
                                 <option value="georgia">Georgia</option>
                             </select>
-                            <button class="editor-buttons" onclick="onSetStrokeStyle(this.value)">
+                            <button class="editor-buttons" onclick="onSetStrokeStyle('green')">
                                 <img src="imgs/buttons/A.png">
                             </button>
-                            <button class="editor-buttons">
+                            <button class="editor-buttons" onclick="onSetColor('green')">
                                 <img src="imgs/buttons/paint-board-and-brush.png">
                             </button>
                         </div>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <section class="gallery-container grid">
+            <section class="gallery-container grid container">
             </section>
             <!-- <section class="modal">
                     <h1>Join us to get access to the latest stories!</h1>
@@ -111,16 +111,16 @@
         <footer class="main-footer flex column align-center">
             <div class="footer-logo colored-dot logo"><a href="#">Pro-MeMe</a>.</div>
             <small class="copyright">© Orel Vaizman © Pro-MeMe ©</small>
-            <!-- <ul class="nav-social clean-list flex">
-            <li class="facebook-icon social-li"><a href="" class="socialmedia-link"><i
-                        class="fab fa-facebook-f"></i></a></li>
-            <li class="twitter-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li class="behance-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-behance"></i></a>
-            </li>
-            <li class="dribble-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-dribbble"></i></a>
-            </li>
-        </ul> -->
+            <ul class="nav-social clean-list flex">
+                <li class="facebook-icon social-li"><a href="" class="socialmedia-link"><i
+                            class="fab fa-linkedin"></i></a>
+                </li>
+                <li class="linkedin-icon social-li"><a href="" class="socialmedia-link"><i
+                            class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="github-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-github"></i></a>
+                </li>
+            </ul>
         </footer>
         <script src="js/util-service.js"></script>
         <script src="js/storage-service.js"></script>
