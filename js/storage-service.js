@@ -1,4 +1,5 @@
 'use strict';
+const STORGAGE_KEY = 'savedMemesDB'
 
 function saveToStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))

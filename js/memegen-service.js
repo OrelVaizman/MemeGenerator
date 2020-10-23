@@ -1,49 +1,52 @@
 'use strict';
+
 var gOnMouseDown = false;
 var gCanvas;
-var defaultTextsPoses;
 var gCtx;
+var gSavedCanvas = [];
 var gKeywords = {
-    'happy': 12, 'funny puk': 1
+    'funny': 6, 'baby': 4, 'black': 4, 'president': 3, 'movie': 3, 'dogs': 2, 'cute': 2, 'cat': 1, 'chill': 1,
+    'cat': 1, 'victory': 1, 'hat': 1, 'happy': 1, 'gay': 1, 'actor': 1, 'usa': 1, 'puppies': 1,
+    'sunglasses': 1
 }
 
 var gImgs = [
     {
-        id: 1, url: 'imgs/patterns/1.jpg', keywords: ['Donald', 'trump', 'president', 'usa'],
+        id: 1, url: 'imgs/patterns/1.jpg', keywords: ['funny', 'president', 'usa']
     }, {
-        id: 2, url: 'imgs/patterns/2.jpg', keywords: ['dogs', 'puppies', 'cute', 'dog']
+        id: 2, url: 'imgs/patterns/2.jpg', keywords: ['dogs', 'puppies', 'cute']
     }, {
-        id: 3, url: 'imgs/patterns/3.jpg', keywords: ['dog', 'baby', 'cute',]
+        id: 3, url: 'imgs/patterns/3.jpg', keywords: ['dogs', 'baby', 'cute',]
     }, {
-        id: 4, url: 'imgs/patterns/4.jpg', keywords: ['cat', 'chill', 'chilling', 'sleeping']
+        id: 4, url: 'imgs/patterns/4.jpg', keywords: ['cat', 'chill', 'cute']
     }, {
-        id: 5, url: 'imgs/patterns/5.jpg', keywords: ['victory', 'baby', 'winning', 'victorius']
+        id: 5, url: 'imgs/patterns/5.jpg', keywords: ['victory', 'baby']
     }, {
-        id: 6, url: 'imgs/patterns/6.jpg', keywords: ['plan', 'listen-up',]
+        id: 6, url: 'imgs/patterns/6.jpg', keywords: ['funny']
     }, {
-        id: 7, url: 'imgs/patterns/7.jpg', keywords: ['black', 'baby', 'eyes', 'open']
+        id: 7, url: 'imgs/patterns/7.jpg', keywords: ['black', 'baby', 'funny']
     }, {
-        id: 8, url: 'imgs/patterns/8.jpg', keywords: ['magician', 'hat', 'smiling', 'excited']
+        id: 8, url: 'imgs/patterns/8.jpg', keywords: ['hat', 'happy']
     }, {
-        id: 9, url: 'imgs/patterns/9.jpg', keywords: ['mean', 'baby', 'laugh', 'wicked']
+        id: 9, url: 'imgs/patterns/9.jpg', keywords: ['baby', 'funny']
     }, {
-        id: 10, url: 'imgs/patterns/10.jpg', keywords: ['black', 'barak', 'obama', 'laugh']
+        id: 10, url: 'imgs/patterns/10.jpg', keywords: ['black', 'president', 'funny']
     }, {
-        id: 11, url: 'imgs/patterns/11.jpg', keywords: ['gay', 'kissing', 'black',]
+        id: 11, url: 'imgs/patterns/11.jpg', keywords: ['gay', 'black',]
     }, {
-        id: 12, url: 'imgs/patterns/12.jpg', keywords: ['haim', 'echt', 'What would you do?', 'tazdik']
+        id: 12, url: 'imgs/patterns/12.jpg', keywords: ['movie']
     }, {
-        id: 13, url: 'imgs/patterns/13.jpg', keywords: ['cheers', 'wine', 'leonardo', 'dicaprio']
+        id: 13, url: 'imgs/patterns/13.jpg', keywords: ['actor']
     }, {
         id: 14, url: 'imgs/patterns/14.jpg', keywords: ['sunglasses', 'black']
     }, {
-        id: 15, url: 'imgs/patterns/15.jpg', keywords: ['good', 'good-job']
+        id: 15, url: 'imgs/patterns/15.jpg', keywords: ['movie']
     }, {
-        id: 16, url: 'imgs/patterns/16.jpg', keywords: ['unbeliveable', 'grandpa', 'old']
+        id: 16, url: 'imgs/patterns/16.jpg', keywords: ['funny']
     }, {
-        id: 17, url: 'imgs/patterns/17.jpg', keywords: ['putin', 'russia', 'president']
+        id: 17, url: 'imgs/patterns/17.jpg', keywords: ['president']
     }, {
-        id: 18, url: 'imgs/patterns/18.jpg', keywords: ['vision', 'one-day']
+        id: 18, url: 'imgs/patterns/18.jpg', keywords: ['movie']
     },
 ];
 
@@ -203,4 +206,51 @@ function setStrokeStyle(strokeStyle) {
 
 function setColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        console.log(3, 'before');
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
+        gImgs.push({
+            id: gImgs.length, url: img.src
+        })
+        gMeme.selectedImgId = gImgs.length - 1
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}
+
+function saveImage() {
+    const currImg = getImgByID(gMeme.selectedImgId)
+    var copiedLines = JSON.parse(JSON.stringify(gMeme.lines))
+    var copiedUrl = JSON.parse(JSON.stringify(currImg.url))
+    var copiedImg = gCanvas.toDataURL('image/jpeg')
+    gSavedCanvas.push({
+        url: copiedUrl,
+        lines: copiedLines,
+        savedMemeImg: copiedImg
+    })
+    saveToStorage(STORGAGE_KEY, gSavedCanvas);
+}
+
+function loadSavedMemes() {
+    var loadedMemes = [];
+    loadedMemes = loadFromStorage(STORGAGE_KEY)
+    if (!loadedMemes) return;
+    gSavedCanvas = loadFromStorage(STORGAGE_KEY);
+}
+
+function setSavedMeme(savedMemeIdx) {
+    console.log(savedMemeIdx)
+    const newUrl = gSavedCanvas[savedMemeIdx].url;
+    const lines = gSavedCanvas[savedMemeIdx].lines;
+    const newId = gImgs.length + 1
+    gImgs.push({
+        id: newId, url: newUrl
+    })
+    gMeme.lines = lines;
+    gMeme.selectedImgId = newId;
 }

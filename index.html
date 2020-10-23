@@ -18,7 +18,7 @@
                         class="fas fa-times"></i></button></li>
             <li><a href="index.html">gallery</a></li>
             <li><a href="about.html">about</a></li>
-            <li><a href="saved-meme.html">memes</a></li>
+            <li onclick="openSavedMemesGallery()">memes</li>
         </ul>
     </header>
     <main class="main-container">
@@ -28,75 +28,92 @@
                 <li class="title-keywords">funny</li>
             </ul>
             <span class="more-keywords" onclick="renderAllKeyWords()">more...</span>
-
         </section>
+        <section class="gallery-container grid container">
+        </section>
+        <section class="savedmemes-gallery-container grid container" style="display:none;">
+        </section>
+    </main>
 
-        <main class="main-content container">
-            <div class="memegen-container flex">
-                <div class="meme-display-container">
-                    <canvas id="memegen-canvas" height="450" width="450" class="canvas-style"></canvas>
-                    <div class="editor-container flex column align-center">
-                        <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
-                        <div class="first-buttons-bar flex">
-                            <button class="editor-buttons" onclick="onSwitchLines()">
-                                <img src="imgs/buttons/switch-lines.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onMoveLine('up')">
-                                <img src="imgs/buttons/up-arrow.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onMoveLine('down')">
-                                <img src="imgs/buttons/down-arrow.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onAddText()">
-                                <img src=" imgs/buttons/add.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onDeleteText()">
-                                <img src="imgs/buttons/trash.png">
-                            </button>
-                        </div>
-                        <div class="second-buttons-bar flex">
-                            <button class="editor-buttons" onclick="onSetFontSize('increase')">
-                                <img src="imgs/buttons/increase_font_-_icon.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onSetFontSize('decrease')"><img
-                                    src="imgs/buttons/decrease_font_-_icon.png"></button>
-                            <button class="editor-buttons" onclick="onAlignText('left')">
-                                <img src="imgs/buttons/align-to-left.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onAlignText('center')">
-                                <img src="imgs/buttons/center-text-alignment.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onAlignText('right')">
-                                <img src="imgs/buttons/align-to-right.png">
-                            </button>
-                        </div>
-                        <div class="third-buttons-bar flex">
-                            <select class="font-selector" onchange="onChangingFont(this.value)">
-                                <option value="impact">Impact</option>
-                                <option value="ariel">Ariel</option>
-                                <option value="sans-serif">Sans-Serif</option>
-                                <option value="cursive">Cursive</option>
-                                <option value="verdana">Verdana</option>
-                                <option value="georgia">Georgia</option>
-                            </select>
-                            <button class="editor-buttons" onclick="onSetStrokeStyle('green')">
-                                <img src="imgs/buttons/A.png">
-                            </button>
-                            <button class="editor-buttons" onclick="onSetColor('green')">
-                                <img src="imgs/buttons/paint-board-and-brush.png">
-                            </button>
-                        </div>
-                        <div class="fourth-buttons-bar">
-                            <a href="#" onclick="onDownloadImg(this)" download="ProMeme-01.jpg">Download</a>
-                            <button>Share</button>
-                            <button>Save</button>
-                        </div>
+    <main class="main-content container">
+        <div class="memegen-container flex">
+            <div class="meme-display-container">
+                <canvas id="memegen-canvas" height="450" width="450" class="canvas-style"></canvas>
+                <div class="editor-container flex column align-center">
+                    <input type="text" name="text" class="text-input" id="text" placeholder="Enter Text Here!">
+                    <div class="first-buttons-bar flex space-between">
+                        <button class="editor-buttons" onclick="onSwitchLines()">
+                            <img src="imgs/buttons/switch-lines.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onMoveLine('up')">
+                            <img src="imgs/buttons/up-arrow.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onMoveLine('down')">
+                            <img src="imgs/buttons/down-arrow.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onAddText()">
+                            <img src=" imgs/buttons/add.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onDeleteText()">
+                            <img src="imgs/buttons/trash.png">
+                        </button>
+                    </div>
+                    <div class="second-buttons-bar flex space-between">
+                        <button class="editor-buttons" onclick="onSetFontSize('increase')">
+                            <img src="imgs/buttons/increase_font_-_icon.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onSetFontSize('decrease')"><img
+                                src="imgs/buttons/decrease_font_-_icon.png"></button>
+                        <button class="editor-buttons" onclick="onAlignText('left')">
+                            <img src="imgs/buttons/align-to-left.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onAlignText('center')">
+                            <img src="imgs/buttons/center-text-alignment.png">
+                        </button>
+                        <button class="editor-buttons" onclick="onAlignText('right')">
+                            <img src="imgs/buttons/align-to-right.png">
+                        </button>
+                    </div>
+                    <div class="third-buttons-bar flex space-between">
+                        <select class="font-selector" onchange="onChangingFont(this.value)">
+                            <option value="impact">Impact</option>
+                            <option value="ariel">Ariel</option>
+                            <option value="sans-serif">Sans-Serif</option>
+                            <option value="cursive">Cursive</option>
+                            <option value="verdana">Verdana</option>
+                            <option value="georgia">Georgia</option>
+                        </select>
+                        <label for="stroke-style">
+                            <input type="color" id="stroke-style" name="stroke-style"
+                                onchange="onSetStrokeStyle(this.value)">
+                            <img src="imgs/buttons/A.png" class="editor-buttons">
+                            </input>
+                        </label>
+                        <label for="color">
+                            <input type="color" id="color" name="color" onchange="onSetColor(this.value)">
+                            <img src="imgs/buttons/paint-board-and-brush.png" class="editor-buttons">
+                            </input>
+                        </label>
+                    </div>
+                    <div class="fourth-buttons-bar flex space-between">
+                        <a href="#" onclick="onDownloadImg(this)" download="ProMeme-01.jpg">Download</a>
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="share-button" type="submit">Share</button>
+                        </form>
+                        <button onclick="onSaveImage()">Save</button>
+                        <label for="uploadImg">
+                            <input type="file" id="uploadImg" class="file-input btn" name="image"
+                                onchange="onImgInput(event)">
+                            <div class="upload-btn">Upload</div>
+                            </input>
+                        </label>
                     </div>
                 </div>
             </div>
-            <section class="gallery-container grid container">
-            </section>
-            <!-- <section class="modal">
+        </div>
+
+        <!-- <section class="modal">
                     <h1>Join us to get access to the latest stories!</h1>
                     <form action="">
                         <label for="email-form">Enter your email:</label>
@@ -107,38 +124,38 @@
                         <button class="btn-close-modal" onclick="toggleModal()">Submit</button>
                     </div>
                 </section> -->
-        </main>
-        <footer class="main-footer flex column align-center">
-            <div class="footer-logo colored-dot logo"><a href="#">Pro-MeMe</a>.</div>
-            <small class="copyright">© Orel Vaizman © Pro-MeMe ©</small>
-            <ul class="nav-social clean-list flex">
-                <li class="facebook-icon social-li"><a href="" class="socialmedia-link"><i
-                            class="fab fa-linkedin"></i></a>
-                </li>
-                <li class="linkedin-icon social-li"><a href="" class="socialmedia-link"><i
-                            class="fab fa-facebook-f"></i></a>
-                </li>
-                <li class="github-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-github"></i></a>
-                </li>
-            </ul>
-        </footer>
-        <script src="js/util-service.js"></script>
-        <script src="js/storage-service.js"></script>
-        <script src="js/memegen-service.js"></script>
-        <script src="js/memegen-controller.js"></script>
-        <script>
-            function onToggleMenu() {
-                var elMobileNav = document.querySelector('.main-nav');
-                elMobileNav.classList.toggle('open-menu')
-            }
+    </main>
+    <footer class="main-footer flex column align-center">
+        <div class="footer-logo logo"><a href="#">Pro-MeMe</a></div>
+        <small class="copyright">© Orel Vaizman © Pro-MeMe ©</small>
+        <ul class="nav-social clean-list flex">
+            <li class="facebook-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-linkedin"></i></a>
+            </li>
+            <li class="linkedin-icon social-li"><a href="" class="socialmedia-link"><i
+                        class="fab fa-facebook-f"></i></a>
+            </li>
+            <li class="github-icon social-li"><a href="" class="socialmedia-link"><i class="fab fa-github"></i></a>
+            </li>
+        </ul>
+    </footer>
+    <script src="js/util-service.js"></script>
+    <script src="js/storage-service.js"></script>
+    <script src="js/memegen-service.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/memegen-controller.js"></script>
+    <script>
+        function onToggleMenu() {
+            var elMobileNav = document.querySelector('.main-nav');
+            elMobileNav.classList.toggle('open-menu')
+        }
 
-            function toggleModal() {
-                var currDisplay = document.querySelector('.modal').style.display;
-                if (currDisplay === 'block') currDisplay = 'none';
-                else currDisplay = 'block';
-                document.querySelector('.modal').style.display = currDisplay;
-            }
-        </script>
+        function toggleModal() {
+            var currDisplay = document.querySelector('.modal').style.display;
+            if (currDisplay === 'block') currDisplay = 'none';
+            else currDisplay = 'block';
+            document.querySelector('.modal').style.display = currDisplay;
+        }
+    </script>
 </body>
 
 </html>

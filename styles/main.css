@@ -50,7 +50,7 @@ button {
 }
 
 button:hover {
-    color: #58c93a;
+    color: black;
 }
 
 a {
@@ -58,14 +58,8 @@ a {
     color: #ffffff;
 }
 
-/* 
-a:hover {
-    color: #040a2c;
-    ;
-} */
-
 .logo {
-    font-size: 2.5rem;
+    font-family: montserrat-bold;
     letter-spacing: -0.02rem;
     transition: 45ms;
 }
@@ -149,6 +143,10 @@ a:hover {
     margin-inline-start: 0.75rem;
 }
 
+.main-header a:hover {
+    color: black;
+}
+
 .main-header .main-nav li:not(:last-child) {
     border-right: 1px solid #8a8a8a;
 }
@@ -165,7 +163,7 @@ a:hover {
 }
 
 .canvas-style {
-    /* margin: 1.25rem; */
+    margin: 1.25rem;
 }
 
 /* Meme Editor */
@@ -178,46 +176,73 @@ a:hover {
 }
 
 .text-input {
+    margin-top: 1rem;
     border-radius: 12px;
     text-align: center;
-    height: 3.75rem;
+    height: 2.50rem;
 }
 
 .editor-buttons {
     border-radius: 12px;
-    /* margin-right: 1.25rem; */
     background-color: white;
     height: 3.75rem;
     width: 3.75rem;
+    /* margin-right: 0.70rem; */
 }
 
 .first-buttons-bar {
     margin-top: 0.625rem;
+    width: 22.5rem;
 }
 
 .second-buttons-bar {
     margin-top: 2.5rem;
+    width: 22.5rem;
 }
 
 .third-buttons-bar {
     margin-top: 0.625rem;
+    width: 22.5rem;
 }
 
 .fourth-buttons-bar {
-    margin-top: 0.625rem
+    margin-top: 0.625rem;
+    /* width: 22.5rem; */
 }
 
 .font-selector {
     border-radius: 12px;
     width: 13.625rem;
-    height: 3.75rem;
+    height: 2.50rem;
+    align-self: center;
 }
 
-.fourth-buttons-bar button, a {
+.fourth-buttons-bar button, .fourth-buttons-bar a {
+    color: white;
     border-radius: 0.75rem;
     background-color: #ff7f00;
     font-size: 1.25rem;
     padding: 1rem 0.625rem;
+    width: 7.5rem;
+    height: 3.75rem;
+}
+
+.upload-btn {
+    color: white;
+    border-radius: 0.75rem;
+    background-color: #ff7f00;
+    font-size: 1.25rem;
+    padding: 1rem 0.625rem;
+    width: 7.5rem;
+    height: 3.75rem;
+}
+
+input[type='color'] {
+    display: none;
+}
+
+input[type='file'] {
+    display: none;
 }
 
 /* Gallery */
@@ -233,10 +258,11 @@ a:hover {
     display: grid;
 }
 
-.gallery-container {
+.gallery-container, .savedmemes-gallery-container {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     margin: 15px 50px;
     gap: 20px;
+    background-color: #e3e3e3;
 }
 
 .gallery-item {
@@ -295,12 +321,8 @@ a:hover {
     border: 1px solid #e1e0e0;
 }
 
-.footer-logo a {
-    color: black;
-}
-
 .footer-logo a:hover {
-    color: #58c93a;
+    color: black;
 }
 
 .copyright {

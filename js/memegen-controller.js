@@ -5,13 +5,14 @@ function init() {
     gCtx = gCanvas.getContext('2d');
     renderGallery();
     addEventListeners();
+    loadSavedMemes();
+    renderSavedGallery();
 }
 
-function setCanvasState() {
-    const selectedImg = getImgByID(gMeme.selectedImgId);
+function setCanvasState(selectedImgUrl = getImgByID(gMeme.selectedImgId).url) {
     // console.log(selectedImg)
     const img = new Image()
-    img.src = selectedImg.url
+    img.src = selectedImgUrl
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
         drawTexts();
@@ -49,7 +50,7 @@ function onImageSelect(imgid) {
 
 function openMemeGen() {
     //Currently not toggle, TOBEUPDATED
-    var elGallery = document.querySelector('.gallery-container');
+    var elGallery = document.querySelector('.main-container');
     var elMemeGen = document.querySelector('.meme-display-container');
     elGallery.style.display = ('none');
     elMemeGen.style.display = ('flex')
@@ -153,10 +154,51 @@ function onSearchKeywords(keyword) {
 }
 
 function onSetStrokeStyle(strokeStyle) {
+    console.log('I am working')
     setStrokeStyle(strokeStyle);
     setCanvasState();
 }
+
 function onSetColor(color) {
     setColor(color);
     setCanvasState();
+}
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, setCanvasState)
+}
+
+function onSaveImage() {
+    console.log('wired')
+    saveImage();
+}
+
+
+// function renderKeywords() {
+//     gKeywords.sort(a, b){
+//         if (a)
+//     }
+
+// }
+
+function renderSavedGallery() {
+    var elGallery = document.querySelector('.savedmemes-gallery-container');
+    var strHTML = gSavedCanvas.map((meme, idx) => {
+        return `<img src="${meme.savedMemeImg}" id="${idx}" class="gallery-item" onclick="onSavedMemeSelect(this.id)">`
+    })
+    elGallery.innerHTML = strHTML.join('');
+}
+
+function onSavedMemeSelect(savedMemeIdx) {
+    setSavedMeme(savedMemeIdx);
+    setCanvasState();
+    openMemeGen();
+}
+
+function openSavedMemesGallery() {
+    console.log('opening saved memes gallery')
+    var elGallery = document.querySelector('.gallery-container');
+    var elSavedMemesGallery = document.querySelector('.savedmemes-gallery-container');
+    elGallery.style.display = ('none');
+    elSavedMemesGallery.style.display = ('flex');
 }
