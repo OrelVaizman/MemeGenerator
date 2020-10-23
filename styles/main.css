@@ -260,9 +260,9 @@ input[type='file'] {
 
 .gallery-container, .savedmemes-gallery-container {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    margin: 15px 50px;
     gap: 20px;
     background-color: #e3e3e3;
+    padding: 1.25rem;
 }
 
 .gallery-item {
@@ -397,11 +397,11 @@ input[type='file'] {
     html {
         font-size: 13px;
     }
+    .meme-display-container {
+        flex-direction: column;
+    }
     /* Mobile */
     @media (max-width: 800px) {
-        .meme-display-container {
-            flex-direction: column;
-        }
         .main-nav {
             height: 100%;
             flex-flow: column wrap;
@@ -437,5 +437,12 @@ input[type='file'] {
         .main-header {
             height: 70px;
         }
+    }
+}
+
+@media (max-width: 550) {
+    .canvas-style {
+        height: 400;
+        width: 400;
     }
 }

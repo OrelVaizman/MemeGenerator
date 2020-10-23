@@ -216,9 +216,9 @@ function loadImageFromInput(ev, onImageReady) {
         img.onload = onImageReady.bind(null, img)
         img.src = event.target.result;
         gImgs.push({
-            id: gImgs.length, url: img.src
+            id: gImgs.length + 1, url: img.src
         })
-        gMeme.selectedImgId = gImgs.length - 1
+        gMeme.selectedImgId = gImgs.length
     }
     reader.readAsDataURL(ev.target.files[0]);
 }
@@ -253,4 +253,4 @@ function setSavedMeme(savedMemeIdx) {
     })
     gMeme.lines = lines;
     gMeme.selectedImgId = newId;
-}
+}   

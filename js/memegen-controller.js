@@ -9,8 +9,8 @@ function init() {
     renderSavedGallery();
 }
 
-function setCanvasState(selectedImgUrl = getImgByID(gMeme.selectedImgId).url) {
-    // console.log(selectedImg)
+function setCanvasState() {
+    const selectedImgUrl = getImgByID(gMeme.selectedImgId).url
     const img = new Image()
     img.src = selectedImgUrl
     img.onload = () => {
@@ -68,12 +68,7 @@ function onSwitchLines() {
 }
 
 function onMoveLine(action) {
-    //TOBECHANGED
-    // if (gMeme.lines[gMeme.selectedLineIdx].y >= gCanvas.height) {
-    //     gMeme.lines[gMeme.selectedLineIdx].y === gCanvas.height - 5;
-    // } else if (gMeme.lines[gMeme.selectedLineIdx].y <= 0) {
-    //     gMeme.lines[gMeme.selectedLineIdx].y === 5;
-    // }
+    if (gMeme.selectedLineIdx === -1 || gMeme.lines.length === 0) return;
     moveLine(action);
     setCanvasState();
 }
@@ -165,7 +160,7 @@ function onSetColor(color) {
 }
 
 function onImgInput(ev) {
-    loadImageFromInput(ev, setCanvasState)
+    loadImageFromInput(ev, setCanvasState);
 }
 
 function onSaveImage() {
