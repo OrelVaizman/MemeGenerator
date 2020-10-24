@@ -104,13 +104,13 @@ function onChangingFont(font) {
 
 function addEventListeners() {
     var text = document.querySelector('.text-input');
-    text.addEventListener('keyup', (ev) => {
+    text.addEventListener('keyup', () => {
         onTextChange();
     });
     gCanvas.addEventListener('mousedown', (ev) => {
         onMouseSelectLine(ev);
     });
-    gCanvas.addEventListener('mouseup', (ev) => {
+    gCanvas.addEventListener('mouseup', () => {
         toggleMouseState();
     });
     gCanvas.addEventListener('mousemove', (ev) => {

@@ -82,36 +82,6 @@ a {
     display: none
 }
 
-.modal {
-    display: flex;
-    display: none;
-    position: sticky;
-    top: 30%;
-    border-radius: 10px;
-    width: 100%;
-    height: 250px;
-    text-align: center;
-    padding: 2rem;
-    text-transform: capitalize;
-    border: 2px solid black;
-    background-color: #fff;
-    color: black;
-    box-shadow: 0 0 3px 1px black;
-}
-
-.btn-close-modal {
-    background-color: rgba(0, 0, 0, 0.701);
-    color: white;
-    border: 1px solid white;
-    padding: 1rem;
-    border-radius: 10px;
-}
-
-.modal-buttons {
-    padding-top: 7.5rem;
-    height: 100%;
-}
-
 /* Layout */
 
 .container {
@@ -248,7 +218,6 @@ input[type='file'] {
 /* Gallery */
 
 .main-content {
-    /* padding-top: 5rem; */
     border-right: 1px solid #e1e0e0;
     border-left: 1px solid #e1e0e0;
     background-color: #e3e3e3;
@@ -328,8 +297,6 @@ input[type='file'] {
 }
 
 .social-li {
-    /* background-color: #e5e5e5; */
-    /* padding: 0.8125rem 1rem; */
     text-align: center;
 }
 
